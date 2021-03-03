@@ -24,16 +24,7 @@ Things you may want to cover:
   - Ruby HTTP:
     - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
 
-* System dependencies
 
 * Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+  - Install webpacker: $ rails webpacker:install
+  - Run with: $ rails s
