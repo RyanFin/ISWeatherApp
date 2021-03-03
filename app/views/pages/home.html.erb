@@ -1,0 +1,100 @@
+<!-- <h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p> -->
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+<h1>Weather App</h1>
+<p> Welcome to the Weather Application. On this page you will be able to find details about todays weather.</p>
+
+<h2>Weather Specification</h2>
+
+<table>
+  <tr>
+    <th>Temperature (Degrees Celsius)</th>
+    <th>Definition</th>
+  </tr>
+  <tr>
+    <td>Hot</td>
+    <td>&#62 18&#8451;</td>
+  </tr>
+  <tr>
+    <td>Warm</td>
+    <td>11&#8451; - 17&#8451;</td>
+  </tr>
+  <tr>
+    <td>Cold</td>
+    <td>&#60 11&#8451;</td>
+  </tr>
+</table>
+
+<p>Input UK Postcode: </p>
+<input type="text" id="user-postcode-input">
+<input type="submit" value="Submit" onclick="getWeatherData()">
+
+<h2>Weather Result</h2>
+<p id="weather_result"></p>
+
+<script type="text/javascript">
+
+  function getWeatherData(){
+    // Get Postcode value from the input form
+    var urlString = document.getElementById("user-postcode-input");
+
+    $.ajax({
+      url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=" + urlString.value + "&days=0",
+      type: "get",
+      data: "",
+      success: function(data) {
+        console.log(data);
+        // Ensure PostCode is for UK
+        if(data["location"]["country"] == "UK"){
+          console.log("UK post code entered...");
+          // console.log("maxtemp_c: " + data["forecast"]["forecastday"][0]["day"].maxtemp_c);
+          CalculateDataCategory(data["forecast"]["forecastday"][0]["day"].maxtemp_c);
+        }
+      },
+      error: function(data) {}
+    });
+  }
+
+ // Prepare weather data
+
+function CalculateDataCategory(temperature){
+  if(temperature >= 18){
+    populateDataResult("The weather is hot!");
+  }
+  if((temperature >= 11) && (temperature <= 17)){
+    populateDataResult("The weather is warm!");
+  }
+  if(temperature <= 11){
+    populateDataResult("The weather is cold!");
+  }
+}
+
+function populateDataResult(result){
+  document.getElementById("weather_result").innerHTML = result;
+
+}
+
+
+
+
+</script>
