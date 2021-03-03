@@ -11,6 +11,10 @@ Things you may want to cover:
 * Rails version
   - Rails 6.1.1
 
+* My Notes
+  - Setup: https://gorails.com/setup/osx/10.15-catalina
+  - Install webpacker: rails webpacker:install
+  - Run with: $ rails s
 
 * System dependencies
 
