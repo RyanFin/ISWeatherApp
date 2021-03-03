@@ -21,6 +21,8 @@ Things you may want to cover:
     - Add jQuery: https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker
       - $ yarn add jquery
       - Add code to config/webpack/environment.js
+  - Ruby HTTP:
+    - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
 
 * System dependencies
 

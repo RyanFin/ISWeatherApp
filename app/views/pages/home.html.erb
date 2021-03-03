@@ -45,31 +45,55 @@ tr:nth-child(even) {
   </tr>
 </table>
 
-<p>Input Postcode: </p>
-<input type="text" id="user-postcode">
-<input type="submit" value="Submit" id="submit-btn">
+<p>Input UK Postcode: </p>
+<input type="text" id="user-postcode-input">
+<input type="submit" value="Submit" onclick="getWeatherData()">
+
+<h2>Weather Result</h2>
+<p id="weather_result"></p>
 
 <script type="text/javascript">
-  $.ajax({
-    url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=ip130sr&days=0",
-    type: "get",
-    data: "",
-    success: function(data) { console.log(data);},
-    error: function(data) {}
-  });
 
-//   $(document).on("click", "#submit-btn", function(){
-//  $.ajax({
-//   url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=ip130sr&days=0",
-//   data: {random_param:"Hello there!"},
-//   dataType: "json",
-//   success: function(response) {
-//   var response = data.random_param_name;
-//   alert("Response is => " + response)
-//  },
-//  error: function(error){console.log(error)}
-//  });
-// });
+  function getWeatherData(){
+    // Get Postcode value from the input form
+    var urlString = document.getElementById("user-postcode-input");
+
+    $.ajax({
+      url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=" + urlString.value + "&days=0",
+      type: "get",
+      data: "",
+      success: function(data) {
+        console.log(data);
+        // Ensure PostCode is for UK
+        if(data["location"]["country"] == "UK"){
+          console.log("UK post code entered...");
+          // console.log("maxtemp_c: " + data["forecast"]["forecastday"][0]["day"].maxtemp_c);
+          CalculateDataCategory(data["forecast"]["forecastday"][0]["day"].maxtemp_c);
+        }
+      },
+      error: function(data) {}
+    });
+  }
+
+ // Prepare weather data
+
+function CalculateDataCategory(temperature){
+  if(temperature >= 18){
+    populateDataResult("The weather is hot!");
+  }
+  if((temperature >= 11) && (temperature <= 17)){
+    populateDataResult("The weather is warm!");
+  }
+  if(temperature <= 11){
+    populateDataResult("The weather is cold!");
+  }
+}
+
+function populateDataResult(result){
+  document.getElementById("weather_result").innerHTML = result;
+
+}
+
 
 
 
