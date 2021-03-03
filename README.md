@@ -16,6 +16,11 @@ Things you may want to cover:
   - Install webpacker: rails webpacker:install
   - Run with: $ rails s
   - Add home and about pages with route configuration: $ rails g controller Pages home about
+  - Add jQuery
+    - Add new gems to Gemfile (gem 'jquery-rails') then I updated with: $ bundle install
+    - Add jQuery: https://www.botreetechnologies.com/blog/introducing-jquery-in-rails-6-using-webpacker
+      - $ yarn add jquery
+      - Add code to config/webpack/environment.js
 
 * System dependencies
 

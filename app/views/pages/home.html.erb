@@ -41,7 +41,36 @@ tr:nth-child(even) {
   </tr>
   <tr>
     <td>Cold</td>
-    <td>&#62 11&#8451;</td>
+    <td>&#60 11&#8451;</td>
   </tr>
-
 </table>
+
+<p>Input Postcode: </p>
+<input type="text" id="user-postcode">
+<input type="submit" value="Submit" id="submit-btn">
+
+<script type="text/javascript">
+  $.ajax({
+    url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=ip130sr&days=0",
+    type: "get",
+    data: "",
+    success: function(data) { console.log(data);},
+    error: function(data) {}
+  });
+
+//   $(document).on("click", "#submit-btn", function(){
+//  $.ajax({
+//   url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=ip130sr&days=0",
+//   data: {random_param:"Hello there!"},
+//   dataType: "json",
+//   success: function(response) {
+//   var response = data.random_param_name;
+//   alert("Response is => " + response)
+//  },
+//  error: function(error){console.log(error)}
+//  });
+// });
+
+
+
+</script>
