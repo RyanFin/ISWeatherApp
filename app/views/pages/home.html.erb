@@ -64,7 +64,6 @@ tr:nth-child(even) {
       type: "get",
       data: "",
       success: function(data) {
-        console.log(data);
         // Ensure PostCode is for UK
         if(data["location"]["country"] == "UK"){
           var temperature = data["forecast"]["forecastday"][0]["day"].maxtemp_c;
@@ -97,8 +96,5 @@ function CalculateDataCategory(temperature){
 function populateDataResult(result){
   document.getElementById("weather_result").innerHTML = result;
 }
-
-
-
 
 </script>
