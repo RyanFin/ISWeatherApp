@@ -18,8 +18,8 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-</style>
 
+</style>
 
 <h1>Weather App</h1>
 <p> Welcome to the Weather Application. On this page you will be able to find details about todays weather.</p>
@@ -88,7 +88,7 @@ function CalculateDataCategory(temperature){
   if((temperature >= 11) && (temperature <= 17)){
     populateDataResult("The weather is warm!");
   }
-  if(temperature <= 11){
+  if(temperature < 11){
     populateDataResult("The weather is cold!");
   }
 }
