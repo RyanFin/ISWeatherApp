@@ -25,6 +25,11 @@ Things you may want to cover:
     - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
   - Rails API: https://api.rubyonrails.org/classes/ActionMailer.html
 
+* Unit testing
+  - Getting Started with RSpec: https://semaphoreci.com/community/tutorials/getting-started-with-rspec
+  - Run from root directory: $ bundle exec rspec
+  - Building Ruby Objects: https://www.rubyguides.com/ruby-tutorial/object-oriented-programming/
+
 
 * Configuration
   - Install webpacker: $ rails webpacker:install
