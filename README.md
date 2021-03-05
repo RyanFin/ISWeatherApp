@@ -23,6 +23,7 @@ Things you may want to cover:
       - Add code to config/webpack/environment.js
   - Ruby HTTP:
     - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
+  - Rails API: https://api.rubyonrails.org/classes/ActionMailer.html
 
 
 * Configuration
