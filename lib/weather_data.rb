@@ -1,6 +1,6 @@
 require 'net/http'
 require 'json'
-# module Services
+
 class WeatherData
   # Add accessibility to attributes
   attr_reader :postcode
@@ -27,7 +27,6 @@ class WeatherData
   def gettempdata(postcode)
     if postcode != ""
     rawjsondata = getinfojson(postcode)
-      puts rawjsondata.class
       # Filter to only UK post
       if rawjsondata["location"]["country"] == "UK"
         temperaturedata = rawjsondata["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
