@@ -25,6 +25,7 @@ Things you may want to cover:
     - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
   - Rails API: https://api.rubyonrails.org/classes/ActionMailer.html
   - Bootstrap: https://getbootstrap.com/docs/5.0/getting-started/introduction/
+  - Set up use of params to pass data with input form: https://www.youtube.com/watch?v=y57OnWV6dRE
 
 
 * Unit testing
@@ -38,7 +39,6 @@ Things you may want to cover:
 * Test Controllers
   - ISWeatherApp/test/controllers/pages_controller_test.rb
   - Run command in cli: $ rails test
-
 
 
 * Configuration
