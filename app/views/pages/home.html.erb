@@ -1,34 +1,16 @@
 <!-- <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p> -->
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-  margin-left:auto;
-  margin-right:auto;
-}
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-
-
+<div class="d-flex justify-content-center">
 <h1>Weather App</h1>
+</div>
 <p> Welcome to the Weather Application. On this page you will be able to find details about todays weather.</p>
 
 <h2>Weather Specification</h2>
 
-<table>
+<table class="table table-info table-striped">
   <tr>
-    <th>Temperature (Degrees Celsius)</th>
+    <th>Temperature (&#8451;)</th>
     <th>Definition</th>
   </tr>
   <tr>
@@ -45,56 +27,30 @@ tr:nth-child(even) {
   </tr>
 </table>
 
-<p>Input UK Postcode: </p>
-<input type="text" id="user-postcode-input">
-<input type="submit" value="Submit" onclick="getWeatherData()">
+<label for="basic-url" class="form-label">Input UK Postcode:</label>
+<form action="">
+  <input type="text" name="postcode" id="postcode">
+  <button type="submit">Create</button>
+</form>
+
+
+<!-- Add a break space -->
+</br>
+
+<div class="container">
 
 <h2>Weather Result</h2>
-<p id="weather_temp"></p>
-<p id="weather_result"></p>
 
-<script type="text/javascript">
+<% weatherdata = WeatherData.new(@postcode)
 
-  function getWeatherData(){
-    // Get Postcode value from the input form
-    var urlString = document.getElementById("user-postcode-input");
+unless @postcode == nil
+temp = weatherdata.gettempdata(@postcode)
+end %>
 
-    $.ajax({
-      url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=" + urlString.value + "&days=0",
-      type: "get",
-      data: "",
-      success: function(data) {
-        // Ensure PostCode is for UK
-        if(data["location"]["country"] == "UK"){
-          var temperature = data["forecast"]["forecastday"][0]["day"].maxtemp_c;
-          DisplayWeather(data["location"]["name"], data["location"]["region"], data["location"]["country"], temperature)
-          CalculateDataCategory(temperature);
-        }
-      },
-      error: function(data) {}
-    });
-  }
+<%  unless temp == nil
+weatherresult = weatherdata.calculatedatacategory(temp)
+end %>
 
- // Populate data
- function DisplayWeather(locationName, region, country, temp){
-   document.getElementById("weather_temp").innerHTML = "Here is the current temperature in " + locationName + " " + region + " " + country + ": " + temp + " Degrees Celsius";
- }
-
- // Prepare weather data
-function CalculateDataCategory(temperature){
-  if(temperature >= 18){
-    populateDataResult("The weather is hot!");
-  }
-  if((temperature >= 11) && (temperature <= 17)){
-    populateDataResult("The weather is warm!");
-  }
-  if(temperature <= 11){
-    populateDataResult("The weather is cold!");
-  }
-}
-
-function populateDataResult(result){
-  document.getElementById("weather_result").innerHTML = result;
-}
-
-</script>
+<p id="weather_result">Here is the current temperature in  <%= @postcode %>: <%= temp %>&#8451;</p>
+<%= weatherresult %>
+</div>

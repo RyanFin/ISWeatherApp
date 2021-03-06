@@ -23,6 +23,22 @@ Things you may want to cover:
       - Add code to config/webpack/environment.js
   - Ruby HTTP:
     - https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html
+  - Rails API: https://api.rubyonrails.org/classes/ActionMailer.html
+  - Bootstrap: https://getbootstrap.com/docs/5.0/getting-started/introduction/
+  - Set up use of params to pass data with input form: https://www.youtube.com/watch?v=y57OnWV6dRE
+
+
+* Unit testing
+  - Getting Started with RSpec: https://semaphoreci.com/community/tutorials/getting-started-with-rspec
+  - Running Simple RSpec: https://www.youtube.com/watch?v=K6RPMhcRICE&ab_channel=Monoso
+  - Run from root directory: $ bundle exec rspec
+  - Building Ruby Objects: https://www.rubyguides.com/ruby-tutorial/object-oriented-programming/
+  - *IMPORTANT:* Move weather_data.rb from lib/services/ into the lib/ dir when performing unit testing with rspec: https://stackoverflow.com/questions/47119729/rails-loading-custom-class-from-lib-folder-in-controller
+
+
+* Test Controllers
+  - ISWeatherApp/test/controllers/pages_controller_test.rb
+  - Run command in cli: $ rails test
 
 
 * Configuration
