@@ -27,13 +27,11 @@ class WeatherData
   def gettempdata(postcode)
     if postcode != ""
     rawjsondata = getinfojson(postcode)
-    unless rawjsondata  !=  nil
       puts rawjsondata.class
       # Filter to only UK post
       if rawjsondata["location"]["country"] == "UK"
         temperaturedata = rawjsondata["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
       end
-    end
   end
   end
 

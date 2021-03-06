@@ -40,7 +40,7 @@ describe WeatherData do
       userWeather =  WeatherData.new("UB4")
       temp = userWeather.gettempdata(userWeather.postcode)
       puts "Temperature in area " + userWeather.postcode + ": " + temp.to_s + " degrees"
-      # puts temp.class
+      puts temp.class
       expect(temp.is_a?(Float)).to eq(true)
     end
   end
