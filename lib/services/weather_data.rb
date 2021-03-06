@@ -1,6 +1,6 @@
 require 'net/http'
 require 'json'
-# module Services
+module Services
 class WeatherData
   # Add accessibility to attributes
   attr_reader :postcode
@@ -45,4 +45,4 @@ class WeatherData
     end
   end
 end
-# end
+end

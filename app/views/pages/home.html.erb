@@ -27,69 +27,30 @@
   </tr>
 </table>
 
-
 <label for="basic-url" class="form-label">Input UK Postcode:</label>
-<div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon3">PostCode</span>
-  <input type="text" class="form-control" id="user-postcode-input" aria-describedby="basic-addon3">
-</div
+<form action="">
+  <input type="text" name="postcode" id="postcode">
+  <button type="submit">Create</button>
+</form>
 
-<div class="d-grid gap-2 col-6 mx-auto">
-  <button class="btn btn-secondary" onclick="getWeatherData()" type="button">Submit</button>
-</div>
 
 <!-- Add a break space -->
 </br>
 
 <div class="container">
+
 <h2>Weather Result</h2>
-<p id="weather_temp"></p>
-<p id="weather_result"></p>
+
+<% weatherdata = WeatherData.new(@postcode)
+
+unless @postcode == nil
+temp = weatherdata.gettempdata(@postcode)
+end %>
+
+<%  unless temp == nil
+weatherresult = weatherdata.calculatedatacategory(temp)
+end %>
+
+<p id="weather_result">Here is the current temperature in  <%= @postcode %>: <%= temp %>&#8451;</p>
+<%= weatherresult %>
 </div>
-
-
-<script type="text/javascript">
-
-  function getWeatherData(){
-    // Get Postcode value from the input form
-    var urlString = document.getElementById("user-postcode-input");
-
-    $.ajax({
-      url: "http://api.weatherapi.com/v1/forecast.json?key=d1d165c764064cec9ce73314211502&q=" + urlString.value + "&days=0",
-      type: "get",
-      data: "",
-      success: function(data) {
-        // Ensure PostCode is for UK
-        if(data["location"]["country"] == "UK"){
-          var temperature = data["forecast"]["forecastday"][0]["day"].maxtemp_c;
-          DisplayWeather(data["location"]["name"], data["location"]["region"], data["location"]["country"], temperature)
-          CalculateDataCategory(temperature);
-        }
-      },
-      error: function(data) {}
-    });
-  }
-
- // Populate data
- function DisplayWeather(locationName, region, country, temp){
-   document.getElementById("weather_temp").innerHTML = "Here is the current temperature in " + locationName + " " + region + " " + country + ": " + temp + "&#8451;";
- }
-
- // Prepare weather data
-function CalculateDataCategory(temperature){
-  if(temperature >= 18){
-    populateDataResult("The weather is hot!");
-  }
-  if((temperature >= 11) && (temperature <= 17)){
-    populateDataResult("The weather is warm!");
-  }
-  if(temperature < 11){
-    populateDataResult("The weather is cold!");
-  }
-}
-
-function populateDataResult(result){
-  document.getElementById("weather_result").innerHTML = result;
-}
-
-</script>
