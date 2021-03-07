@@ -15,6 +15,7 @@ class WeatherData
 
     params = {:key => 'd1d165c764064cec9ce73314211502', :q => postcode, :days => 0}
 
+    if params[:q] != ""
     uri.query = URI.encode_www_form(params)
 
     res = Net::HTTP.get(uri)
@@ -23,15 +24,34 @@ class WeatherData
     # parse the JSON
     JSON.parse(res)
   end
+  end
+
+# we  want to get the response code first
+  def getURLResponseMessage(postcode)
+    uri = URI('http://api.weatherapi.com/v1/forecast.json')
+
+    params = {:key => 'd1d165c764064cec9ce73314211502', :q => postcode, :days => 0}
+
+    uri.query = URI.encode_www_form(params)
+
+    res = Net::HTTP.get(uri)
+
+    JSON.parse(res)
+  end
 
   def gettempdata(postcode)
+    response = getURLResponseMessage(postcode)
+    if !response.key?("error")
     if postcode != ""
     rawjsondata = getinfojson(postcode)
       # Filter to only UK post
       if rawjsondata["location"]["country"] == "UK"
         temperaturedata = rawjsondata["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
       end
+    else
+      str = "Enter valid postcode please"
   end
+end
   end
 
   def calculatedatacategory(temperature)

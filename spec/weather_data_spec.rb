@@ -35,6 +35,18 @@ describe WeatherData do
     end
   end
 
+
+  describe '.getURLResponseMessage' do
+    it 'get bad response code for fake postcode param' do
+      userWeather = WeatherData.new("dsfsdf")
+      response = userWeather.getURLResponseMessage(userWeather.postcode)
+      puts response["error"]["message"]
+      # check  to see if the response contains the error hash in it
+      # error due to the fake postcode URL param
+      expect(response.key?).to eq(true)
+    end
+  end
+
   describe '.gettempdata' do
     it 'get temperature data for postcode' do
       userWeather =  WeatherData.new("UB4")
@@ -42,6 +54,23 @@ describe WeatherData do
       puts "Temperature in area " + userWeather.postcode + ": " + temp.to_s + " degrees"
       puts temp.class
       expect(temp.is_a?(Float)).to eq(true)
+    end
+  end
+
+  describe '.gettempdata' do
+    it 'get temperature data for empty postcode string' do
+      userWeather =  WeatherData.new("")
+      temp = userWeather.gettempdata(userWeather.postcode)
+      puts temp.to_s
+    end
+  end
+
+  describe '.gettempdata' do
+    it 'get temperature data for fake postcode' do
+      userWeather = WeatherData.new("fadsdggsfgsfg")
+      temp = userWeather.gettempdata(userWeather.postcode)
+      puts temp.class
+      puts userWeather.class
     end
   end
 
