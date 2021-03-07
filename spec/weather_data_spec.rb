@@ -43,7 +43,7 @@ describe WeatherData do
       puts response["error"]["message"]
       # check  to see if the response contains the error hash in it
       # error due to the fake postcode URL param
-      expect(response.key?).to eq(true)
+      expect(response.key?("error")).to eq(true)
     end
   end
 
